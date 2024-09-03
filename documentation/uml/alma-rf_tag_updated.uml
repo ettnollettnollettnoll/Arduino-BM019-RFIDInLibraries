@@ -1,0 +1,15 @@
+'https://plantuml.com/sequence-diagram
+'https://www.plantuml.com/plantuml/uml
+@startuml
+"Alma RFID Connector\nWeb browser"->"Python/Bottle\nlocalhost" : OPTIONS http://localhost:8000/getItems\nHTTP
+"Python/Bottle\nlocalhost"->"Alma RFID Connector\nWeb browser" : ... access-control-allow-origin: * ...
+"Alma RFID Connector\nWeb browser"->"Python/Bottle\nlocalhost" : GET http://localhost:8000/getItems\nHTTP
+"Python/Bottle\nlocalhost"->Arduino : "1"\nSerial over USB
+Arduino->"BM019\n(RFID module)" : 0x00 0x04 0x04 0x02\n0x23 0x00 0x09\nSPI
+"BM019\n(RFID module)"->"RF tag" : ... 0x23 0x00 0x09 ...\nISO/SEC 15693
+|||
+"RF tag"->"BM019\n(RFID module)" : ... 0x01 0x01 0x02 ...
+"BM019\n(RFID module)"->Arduino : ... 0x01 0x01 0x02 ...
+Arduino->"Python/Bottle\nlocalhost" : {"r":"1","e":" ","s":"0",\n"p":"11250000066103",\n"c1":"3515","c2":"3515"}
+"Python/Bottle\nlocalhost"->"Alma RFID Connector\nWeb browser" : ...\naccess-control-allow-origin: *\ncontent-type: application/xml\n...\n<item><barcode>11250000066103</barcode> ...
+@enduml

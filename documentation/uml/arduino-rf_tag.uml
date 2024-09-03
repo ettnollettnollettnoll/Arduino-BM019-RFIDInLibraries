@@ -1,0 +1,11 @@
+'https://plantuml.com/sequence-diagram
+'https://www.plantuml.com/plantuml/uml
+@startuml
+Arduino->"BM019\n(RFID module)" : SPI
+"BM019\n(RFID module)"->"CR95HF\n(RFID chip)" : CR95HF protocol
+"CR95HF\n(RFID chip)"->"RF tag" : ISO/SEC 15693
+|||
+"RF tag"->"CR95HF\n(RFID chip)"
+"CR95HF\n(RFID chip)"->"BM019\n(RFID module)"
+"BM019\n(RFID module)"->Arduino
+@enduml
