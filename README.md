@@ -23,16 +23,16 @@ The Arduino is expecting the following commands sent as strings:
 "2" - Read security  
 "3" - Set security to on  
 "4" - Set security to off  
-"5<barcode>" - Write <barcode>, max 16 chars, to tag  
+"5&lt;barcode>" - Write &lt;barcode>, max 16 chars, to tag  
 "9" - Stop scanning for tags  
 
 The arduino replies in the following JSON-ish format, the reply can differ somewhat for different commands:  
-{"r":"<result>","e":"<error>","s":"<security>","p":"<payload>","c1":"<crc_recorded>","c1":"<crc_calculated>"}  
-<result> - success of the command, 1 for succes and 0 for failure  
-<error> - error message if a command fails  
-<security> - security status, 1 for on and 0 for off or unknown  
-<payload> - contains the barcode when applicable  
-<crc_recorded> - CRC recorded in the tag when applicable  
-<crc_calculated> - CRC calculated from the other fields in the tag when applicable  
+{"r":"&lt;result>","e":"&lt;error>","s":"&lt;security>","p":"&lt;payload>","c1":"&lt;crc_recorded>","c1":"&lt;crc_calculated>"}  
+&lt;result> - success of the command, 1 for succes and 0 for failure  
+&lt;error> - error message if a command fails  
+&lt;security> - security status, 1 for on and 0 for off or unknown  
+&lt;payload> - contains the barcode when applicable  
+&lt;crc_recorded> - CRC recorded in the tag when applicable  
+&lt;crc_calculated> - CRC calculated from the other fields in the tag when applicable  
 
 Please refer to ISO 28560-1 and your own implementation of the standard for details on how security is handled in your tags.
